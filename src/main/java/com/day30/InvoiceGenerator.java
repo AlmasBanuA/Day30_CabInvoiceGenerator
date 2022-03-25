@@ -8,6 +8,9 @@ package com.day30;
  * return the total fare of journey - Cost Rs.10 per KM + Rs.1 per minute. -
  * Minimum Fare - Rs.5
  * 
+ * UC2: Multiple Ride - The invoice generator should now take in multiple rides,
+ * and calculate the aggregate total for all
+ * 
  * @author user -Almas
  *
  */
@@ -28,26 +31,24 @@ public class InvoiceGenerator {
 	 * 
 	 * @param distance -distance of per km cost is 10 rs
 	 * @param time     -per minute cost is 1rs
-	 * @return total fare -total fare to be calulated
+	 * @return -return to method created
 	 */
 	public double calculateFare(double distance, int time) {
 		return Math.max(MINIMUM_FARE, distance * COST_PER_KM + time * COST_PER_TIME);
 	}
 
 	/**
-	 * Main method for manipulation of TDD aproach
+	 * method created to calculate total fare of multiple rides
 	 * 
-	 * @param args - Default Java param (Not used)
+	 * @param rides
+	 * @return total fare
 	 */
-	public static void main(String[] args) {
-		/**
-		 * create Instance of InvoiceGenerator class,
-		 */
-		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-		/**
-		 * calling CalculateFare method from InvoiceGenerator object and print o/p
-		 */
-		System.out.println(invoiceGenerator.calculateFare(5, 20) + " Rs");
+	public double calculateFare(Ride[] rides) {
+		double totalFare = 0;
+		for (Ride ride : rides) {
+			totalFare += calculateFare(ride.getDistance(), ride.getTime());
+		}
+		return totalFare;
 	}
 
 }
