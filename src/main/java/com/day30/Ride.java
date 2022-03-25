@@ -2,6 +2,11 @@ package com.day30;
 
 public class Ride {
 
+	/**
+	 * private variables can only be accessed within the same class (an outside
+	 * class has no access to it) private = restricted access However, it is
+	 * possible to access them if we provide public get and set methods.
+	 */
 	private double distance;
 	private int time;
 

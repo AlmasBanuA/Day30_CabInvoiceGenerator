@@ -11,6 +11,10 @@ package com.day30;
  * UC2: Multiple Ride - The invoice generator should now take in multiple rides,
  * and calculate the aggregate total for all
  * 
+ * UC3: Enhanced Invoice - The invoice generator should now return the following
+ * as a part of the invoice- - Total Number Of Rides - Total Fare - Average Fare
+ * Per Ride
+ * 
  * @author user -Almas
  *
  */
@@ -49,6 +53,18 @@ public class InvoiceGenerator {
 			totalFare += calculateFare(ride.getDistance(), ride.getTime());
 		}
 		return totalFare;
+	}
+
+	/**
+	 * InvoiceSummary method for getting the part of the invoice
+	 * 
+	 * @param rides
+	 * @return
+	 */
+	public InvoiceSummary getInvoiceSummary(Ride[] rides) {
+		double totalFare = calculateFare(rides);
+		int numOfRides = rides.length;
+		return new InvoiceSummary(numOfRides, totalFare);
 	}
 
 }
