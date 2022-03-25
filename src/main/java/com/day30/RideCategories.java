@@ -15,7 +15,7 @@ public enum RideCategories {
 	/**
 	create parameterized constructor for RideCategories by passing parameters
 	*/
-private RideCategories(double costPerKm, int costPerTime, double minFare) {
+        private RideCategories(double costPerKm, int costPerTime, double minFare) {
 		this.costPerKm = costPerKm;
 		this.costPerTime = costPerTime;
 		this.minFare = minFare;
