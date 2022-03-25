@@ -34,20 +34,4 @@ public class InvoiceGenerator {
 		return Math.max(MINIMUM_FARE, distance * COST_PER_KM + time * COST_PER_TIME);
 	}
 
-	/**
-	 * Main method for manipulation of TDD aproach
-	 * 
-	 * @param args - Default Java param (Not used)
-	 */
-	public static void main(String[] args) {
-		/**
-		 * create Instance of InvoiceGenerator class,
-		 */
-		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-		/**
-		 * calling CalculateFare method from InvoiceGenerator object and print o/p
-		 */
-		System.out.println(invoiceGenerator.calculateFare(5, 20) + " Rs");
-	}
-
 }
