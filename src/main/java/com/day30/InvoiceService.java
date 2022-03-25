@@ -12,26 +12,21 @@ package com.day30;
  * and calculate the aggregate total for all
  * 
  * UC3: Enhanced Invoice - The invoice generator should now return the following
- * as a part of the invoice- - Total Number Of Rides - Total Fare - Average Fare
+ * as a part of the invoice -Total Number Of Rides - Total Fare - Average Fare
  * Per Ride
  * 
  * UC4: Invoice Service - Given a user id ,the invoice service gets the list of
  * rides from the ride repository, and return the invoice.
+ * 
+ * UC5: Premium Rides (Bonus) - The cab agency now supports 2 categories of
+ * rides : - Normal Rides : Rs.10 per km, Rs.1 per minute, Minimum fare of Rs.5
+ * - Premium Rides : Rs.15 per km, Rs.2 per minute, Minimum fare of Rs.20
  * 
  * @author user -Almas
  *
  */
 
 public class InvoiceService {
-
-	/**
-	 * the variables is only visible within the class, not from any other class
-	 * (including subclasses). The visibility of private members extends to nested
-	 * classes. private final static -> create this variable only once.
-	 */
-	private static final int COST_PER_TIME = 1;
-	private static final double COST_PER_KM = 10;
-	private static final double MINIMUM_FARE = 5;
 	private RideRepository rideRepository;
 
 	/**
@@ -42,14 +37,15 @@ public class InvoiceService {
 	}
 
 	/**
-	 * create method to calculate total fare as per distance and time
+	 * create method calculateFare for calculating both kind of rides Premium Rides
+	 * and normal rides
 	 * 
-	 * @param distance -distance of per km cost is 10 rs
-	 * @param time     -per minute cost is 1rs
-	 * @return -return to method created
+	 * @param ride
+	 * @return
 	 */
-	public double calculateFare(double distance, int time) {
-		return Math.max(MINIMUM_FARE, distance * COST_PER_KM + time * COST_PER_TIME);
+	public double calculateFare(Ride ride) {
+		return Math.max(ride.rideCategory.minFare,
+				ride.getDistance() * ride.rideCategory.costPerKm + ride.getTime() * ride.rideCategory.costPerTime);
 	}
 
 	/**
@@ -61,7 +57,7 @@ public class InvoiceService {
 	public InvoiceSummary calculateFare(Ride[] rides) {
 		double totalFare = 0;
 		for (Ride ride : rides) {
-			totalFare += calculateFare(ride.getDistance(), ride.getTime());
+			totalFare += calculateFare(ride);
 		}
 		return new InvoiceSummary(rides.length, totalFare);
 	}

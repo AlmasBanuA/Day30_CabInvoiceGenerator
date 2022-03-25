@@ -9,14 +9,18 @@ public class Ride {
 	 */
 	private double distance;
 	private int time;
+	public RideCategories rideCategory;
 
 	/**
-	 * create parameterized constructor of Ride class by passing distance and time
+	 * create parameterized constructor of Ride class by passing distance, time and
+	 * rideCategory
 	 * 
+	 * @param rideCategory
 	 * @param distance
 	 * @param time
 	 */
-	public Ride(double distance, int time) {
+	public Ride(RideCategories rideCategory, double distance, int time) {
+		this.rideCategory = rideCategory;
 		this.distance = distance;
 		this.time = time;
 	}
